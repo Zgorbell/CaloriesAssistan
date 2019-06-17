@@ -18,6 +18,7 @@ class DishChooserFragment : Fragment() {
     private lateinit var viewModel: DishChooserViewModel
     private lateinit var listAdapter: DishChooserListAdapter
     private var menuItemSubmit: MenuItem? = null
+    private var menu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +54,7 @@ class DishChooserFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        this.menu = menu
         menuItemSubmit = menu?.add("Submit")
         menuItemSubmit?.setIcon(R.drawable.ic_check_24dp)
         menuItemSubmit?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
@@ -88,5 +90,10 @@ class DishChooserFragment : Fragment() {
             listAdapter = it
             fragment_dish_chooser_rv_dishes.adapter = it
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        menu?.clear()
     }
 }

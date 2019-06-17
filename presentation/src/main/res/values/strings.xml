@@ -31,4 +31,6 @@
     <string name="log_out">Log out</string>
     <string name="repeat_password">Repeat password</string>
     <string name="enter_dish">Enter dish</string>
+    <string name="dish_search">Dish search</string>
+    <string name="enter_weigh">Enter weigh</string>
 </resources>

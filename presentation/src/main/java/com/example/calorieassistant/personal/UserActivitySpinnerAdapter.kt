@@ -37,6 +37,16 @@ class UserActivitySpinnerAdapter(context: Context,
         }
     }
 
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var newView = convertView
+        if (newView == null) {
+            val inflater = LayoutInflater.from(context)
+            newView = inflater.inflate(android.R.layout.simple_spinner_dropdown_item, parent, false)
+        }
+        (newView?.findViewById(android.R.id.text1) as TextView).text = getSelectedText(array[position])
+        return newView
+    }
+
     private fun getText(activityLevel: UserActivityLevel): String{
         return when(activityLevel) {
             UserActivityLevel.No -> context.resources.getString(R.string.user_activity_no)
@@ -44,6 +54,16 @@ class UserActivitySpinnerAdapter(context: Context,
             UserActivityLevel.Medium -> context.getString(R.string.user_activity_medium)
             UserActivityLevel.High -> context.getString(R.string.user_activity_high)
             UserActivityLevel.Extreme -> context.getString(R.string.user_activity_very_high)
+        }
+    }
+
+    private fun getSelectedText(activityLevel: UserActivityLevel): String{
+        return when(activityLevel) {
+            UserActivityLevel.No -> "Умеренная"
+            UserActivityLevel.Low -> "Умеренная"
+            UserActivityLevel.Medium -> "Умеренная"
+            UserActivityLevel.High -> "Умеренная"
+            UserActivityLevel.Extreme -> "Умеренная"
         }
     }
 }

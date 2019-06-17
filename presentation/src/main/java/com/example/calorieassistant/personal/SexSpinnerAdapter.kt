@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.calorieassistant.R
 import com.example.calorieassistant.models.Sex
+import org.w3c.dom.Text
 
 class SexSpinnerAdapter(
     context: Context,
@@ -27,6 +28,16 @@ class SexSpinnerAdapter(
         val text1 = newView?.findViewById(android.R.id.text1) as TextView
         text1.text = getText(item)
         setOnTouchListener(newView, item)
+        return newView
+    }
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var newView = convertView
+        if (newView == null) {
+            val inflater = LayoutInflater.from(context)
+            newView = inflater.inflate(android.R.layout.simple_spinner_dropdown_item, parent, false)
+        }
+        (newView?.findViewById(android.R.id.text1) as TextView).text = getText(array[position])
         return newView
     }
 

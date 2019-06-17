@@ -6,7 +6,7 @@
             android:title="@string/statistic"/>
 
     <item
-            android:id="@+id/dishesFragment"
+            android:id="@+id/dishesCollectionsFragment"
             android:title="@string/dishes"/>
     <item
         android:id="@+id/accountFragment"

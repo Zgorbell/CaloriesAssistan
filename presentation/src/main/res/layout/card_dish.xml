@@ -8,9 +8,20 @@
                                     app:cardUseCompatPadding="true"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
+
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+        <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_close_black_24dp"
+                android:background="@color/colorTransparent"
+                android:id="@+id/card_dish_b_close"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
         <TextView
                 android:text="Курица запеченая в духовке"

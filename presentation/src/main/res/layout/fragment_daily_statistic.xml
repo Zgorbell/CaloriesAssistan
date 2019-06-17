@@ -30,17 +30,17 @@
 
         <TextView
                 android:text="2046"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/fragment_daily_statistic_tv_daily_rate"
                 android:textSize="@dimen/sp_24"
                 android:textColor="@color/colorBlack"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@+id/textView3"/>
 
         <TextView
                 android:text="@string/daily_rate"

@@ -46,11 +46,11 @@ class DishesFragment: Fragment(){
 
     private fun getDishes(): MutableList<Dish>{
         val dishes = ArrayList<Dish>()
-        dishes.add(Dish(0, "Kurica", 400.toDouble()))
-        dishes.add(Dish(1, "Markov", 400.toDouble()))
-        dishes.add(Dish(2, "Eda", 400.toDouble()))
-        dishes.add(Dish(3, "Lomka", 400.toDouble()))
-        dishes.add(Dish(4, "Kacha", 400.toDouble()))
+        dishes.add(Dish(0, "Курица запеченая в духовке ", 400.toDouble()))
+        dishes.add(Dish(1, "Стейк на гриле", 390.toDouble()))
+        dishes.add(Dish(2, "Свинная отбивная", 400.toDouble()))
+        dishes.add(Dish(3, "Гуляш из индейки", 400.toDouble()))
+        dishes.add(Dish(4, "Колбаса домашняя из свинины", 400.toDouble()))
         return dishes
     }
 }
