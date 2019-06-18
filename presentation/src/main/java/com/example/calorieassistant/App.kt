@@ -1,18 +1,28 @@
 package com.example.calorieassistant
 
 import android.app.Application
+import com.example.database.AppDatabase
 import com.example.remote.RestApi
+import com.example.shared.SharedPreferenceManager
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.terrakok.cicerone.Cicerone
+import ru.terrakok.cicerone.Router
 import java.util.concurrent.TimeUnit
+import ru.terrakok.cicerone.NavigatorHolder
+
+
 
 
 class App: Application(){
 
-    public lateinit var restApi: RestApi
+    lateinit var restApi: RestApi
+    lateinit var database: AppDatabase
+    lateinit var sharedPreferanceManager: SharedPreferenceManager
+    private lateinit var cicerone: Cicerone<Router>
 
     companion object{
         private lateinit var instance: App
@@ -36,5 +46,16 @@ class App: Application(){
             .baseUrl(RestApi.BASE_URL)
             .build()
         restApi = retrofit.create(RestApi::class.java)
+        database = AppDatabase.getDatabase(this, "database")
+        sharedPreferanceManager = SharedPreferenceManager(this)
+        cicerone = Cicerone.create()
+    }
+
+    fun getNavigatorHolder(): NavigatorHolder {
+        return cicerone.navigatorHolder
+    }
+
+    fun getRouter(): Router {
+        return cicerone.router
     }
 }

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import com.example.calorieassistant.models.UserActivityLevel
+import com.example.domain.model.UserActivityLevel
 import android.view.MotionEvent
 import android.widget.TextView
 import com.example.calorieassistant.R
@@ -13,9 +13,9 @@ import com.example.calorieassistant.R
 
 class UserActivitySpinnerAdapter(context: Context,
                                  val res: Int,
-                                 val array: List<UserActivityLevel>,
-                                 val listener: (UserActivityLevel) -> Unit)
-    : ArrayAdapter<UserActivityLevel>(context, res, array){
+                                 val array: List<com.example.domain.model.UserActivityLevel>,
+                                 val listener: (com.example.domain.model.UserActivityLevel) -> Unit)
+    : ArrayAdapter<com.example.domain.model.UserActivityLevel>(context, res, array){
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
         var newView = convertView;
@@ -30,7 +30,7 @@ class UserActivitySpinnerAdapter(context: Context,
         return newView
     }
 
-    private fun setOnTouchListener(view: View, item: UserActivityLevel) {
+    private fun setOnTouchListener(view: View, item: com.example.domain.model.UserActivityLevel) {
         view.setOnTouchListener { v: View, e: MotionEvent ->
             listener(item)
             false
@@ -47,23 +47,23 @@ class UserActivitySpinnerAdapter(context: Context,
         return newView
     }
 
-    private fun getText(activityLevel: UserActivityLevel): String{
+    private fun getText(activityLevel: com.example.domain.model.UserActivityLevel): String{
         return when(activityLevel) {
-            UserActivityLevel.No -> context.resources.getString(R.string.user_activity_no)
-            UserActivityLevel.Low -> context.resources.getString(R.string.user_activity_low)
-            UserActivityLevel.Medium -> context.getString(R.string.user_activity_medium)
-            UserActivityLevel.High -> context.getString(R.string.user_activity_high)
-            UserActivityLevel.Extreme -> context.getString(R.string.user_activity_very_high)
+            com.example.domain.model.UserActivityLevel.No -> context.resources.getString(R.string.user_activity_no)
+            com.example.domain.model.UserActivityLevel.Low -> context.resources.getString(R.string.user_activity_low)
+            com.example.domain.model.UserActivityLevel.Medium -> context.getString(R.string.user_activity_medium)
+            com.example.domain.model.UserActivityLevel.High -> context.getString(R.string.user_activity_high)
+            com.example.domain.model.UserActivityLevel.Extreme -> context.getString(R.string.user_activity_very_high)
         }
     }
 
-    private fun getSelectedText(activityLevel: UserActivityLevel): String{
+    private fun getSelectedText(activityLevel: com.example.domain.model.UserActivityLevel): String{
         return when(activityLevel) {
-            UserActivityLevel.No -> "Умеренная"
-            UserActivityLevel.Low -> "Умеренная"
-            UserActivityLevel.Medium -> "Умеренная"
-            UserActivityLevel.High -> "Умеренная"
-            UserActivityLevel.Extreme -> "Умеренная"
+            com.example.domain.model.UserActivityLevel.No -> "Умеренная"
+            com.example.domain.model.UserActivityLevel.Low -> "Умеренная"
+            com.example.domain.model.UserActivityLevel.Medium -> "Умеренная"
+            com.example.domain.model.UserActivityLevel.High -> "Умеренная"
+            com.example.domain.model.UserActivityLevel.Extreme -> "Умеренная"
         }
     }
 }

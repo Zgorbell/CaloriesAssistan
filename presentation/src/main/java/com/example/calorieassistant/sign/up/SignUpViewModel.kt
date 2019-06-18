@@ -4,24 +4,24 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.LiveDataReactiveStreams
 import android.arch.lifecycle.ViewModel
 import com.example.calorieassistant.App
-import com.example.calorieassistant.models.User
+import com.example.shared.SharedPreferenceManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class SignUpViewModel: ViewModel() {
-    private lateinit var user: User
+    private lateinit var userAuthorization: com.example.domain.model.UserAuthorization
 
-    fun setUser(user: User) {
-        this.user = user
+    fun setUser(userAuthorization: com.example.domain.model.UserAuthorization) {
+        this.userAuthorization = userAuthorization
     }
 
     fun onButtonSignUpClicked(): LiveData<Boolean> {
         return LiveDataReactiveStreams.fromPublisher(
-            App.getInstance().restApi.signUp(user.toRemote())
+            App.getInstance().restApi.signUp(userAuthorization.toRemote())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .map {
-                    it.token?.let { return@map true }
+                    it.token?.let { return@map saveUser() }
                     it.error?.let { return@map false }
                     false
                 }
@@ -29,5 +29,9 @@ class SignUpViewModel: ViewModel() {
                     false
                 }
                 .toFlowable())
+    }
+
+    private fun saveUser(): Boolean{
+        return App.getInstance().sharedPreferanceManager.saveString(SharedPreferenceManager.USER_NAME, userAuthorization.name)
     }
 }

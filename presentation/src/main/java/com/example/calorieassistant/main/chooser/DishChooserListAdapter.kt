@@ -10,17 +10,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.calorieassistant.R
-import com.example.calorieassistant.models.DishUsed
+import com.example.domain.model.DishUsed
 import kotlinx.android.synthetic.main.card_dish_chooser.view.*
 
 
 
 class DishChooserListAdapter(val context: Context,
-                             val clickListener: (DishUsed) -> Unit,
-                             val clearListener: (DishUsed) -> Unit) :
-    ListAdapter<DishUsed, DishChooserListAdapter.DishesViewHolder>(DishesDiffUtilCallback()) {
+                             val clickListener: (com.example.domain.model.DishUsed) -> Unit,
+                             val clearListener: (com.example.domain.model.DishUsed) -> Unit) :
+    ListAdapter<com.example.domain.model.DishUsed, DishChooserListAdapter.DishesViewHolder>(DishesDiffUtilCallback()) {
 
-    override fun submitList(list: List<DishUsed>?) {
+    override fun submitList(list: List<com.example.domain.model.DishUsed>?) {
         super.submitList(if (list != null) ArrayList(list) else null)
     }
 
@@ -35,7 +35,7 @@ class DishChooserListAdapter(val context: Context,
     }
 
     inner class DishesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(dish: DishUsed) {
+        fun bind(dish: com.example.domain.model.DishUsed) {
             itemView.card_dish_chooser_tv_name.text = dish.getName()
             "${context.getString(R.string.calories)} ${dish.getCalories().toInt()}".let {
                 itemView.card_dish_chooser_tv_calories.text = it
@@ -53,13 +53,13 @@ class DishChooserListAdapter(val context: Context,
         }
     }
 
-    class DishesDiffUtilCallback : DiffUtil.ItemCallback<DishUsed>() {
+    class DishesDiffUtilCallback : DiffUtil.ItemCallback<com.example.domain.model.DishUsed>() {
 
-        override fun areItemsTheSame(new: DishUsed, old: DishUsed): Boolean {
+        override fun areItemsTheSame(new: com.example.domain.model.DishUsed, old: com.example.domain.model.DishUsed): Boolean {
             return false
         }
 
-        override fun areContentsTheSame(new: DishUsed, old: DishUsed): Boolean {
+        override fun areContentsTheSame(new: com.example.domain.model.DishUsed, old: com.example.domain.model.DishUsed): Boolean {
             return false
         }
 

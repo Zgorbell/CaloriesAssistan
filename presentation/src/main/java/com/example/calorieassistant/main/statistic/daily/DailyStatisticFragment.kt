@@ -56,7 +56,10 @@ class DailyStatisticFragment : Fragment() {
                 fragment_daily_statistic_rv_dishes.adapter = it
             }
         adapter.submitList(Singleton.listDishesSelected)
-        fragment_daily_statistic_tv_daily_rate.text = (Singleton.getFormula() - Singleton.getDailyHavka()).toInt().toString()
+        Singleton.getFormula().doOnSuccess {
+            fragment_daily_statistic_tv_daily_rate.text = (it - Singleton.getDailyHavka()).toInt().toString()
+        }.subscribe()
+
     }
 
     private fun subscribeOpenChooserFragment() {

@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.calorieassistant.R
-import com.example.calorieassistant.models.Dish
+import com.example.domain.model.Dish
 
 
 class DishesCollectionsListAdapter(val listener: (String) -> Unit) :

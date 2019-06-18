@@ -10,9 +10,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController = Navigation.findNavController(this, R.id.activity_main_nav_host_fragment)
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.calorieassistant.models.error
+package com.example.domain.model.error
 
 enum class ValidationUserPersonalError {
     HEIGHT_ZERO,

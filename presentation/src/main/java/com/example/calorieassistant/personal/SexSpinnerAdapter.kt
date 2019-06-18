@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.calorieassistant.R
-import com.example.calorieassistant.models.Sex
-import org.w3c.dom.Text
+import com.example.domain.model.Sex
 
 class SexSpinnerAdapter(
     context: Context,
     val res: Int,
-    val array: List<Sex>,
-    val listener: (Sex) -> Unit
-) : ArrayAdapter<Sex>(context, res, array) {
+    val array: List<com.example.domain.model.Sex>,
+    val listener: (com.example.domain.model.Sex) -> Unit
+) : ArrayAdapter<com.example.domain.model.Sex>(context, res, array) {
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
         var newView = convertView
@@ -41,17 +40,17 @@ class SexSpinnerAdapter(
         return newView
     }
 
-    private fun setOnTouchListener(view: View, item: Sex) {
+    private fun setOnTouchListener(view: View, item: com.example.domain.model.Sex) {
         view.setOnTouchListener { v: View, e: MotionEvent ->
             listener(item)
             false
         }
     }
 
-    private fun getText(activityLevel: Sex): String {
+    private fun getText(activityLevel: com.example.domain.model.Sex): String {
         return when (activityLevel) {
-            Sex.Man -> context.getString(R.string.sex_man)
-            Sex.Woman -> context.getString(R.string.sex_woman)
+            com.example.domain.model.Sex.Man -> context.getString(R.string.sex_man)
+            com.example.domain.model.Sex.Woman -> context.getString(R.string.sex_woman)
         }
     }
 }

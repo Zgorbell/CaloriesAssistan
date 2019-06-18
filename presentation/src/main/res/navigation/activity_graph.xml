@@ -12,11 +12,13 @@
             android:label="SignInFragment">
         <action
                 android:id="@+id/action_signInFragment_to_signUpFragment"
-                app:destination="@id/signUpFragment"/>
+                app:destination="@id/signUpFragment"
+                app:popUpTo="@id/signInFragment"
+                app:popUpToInclusive="true"/>
         <action
                 android:id="@+id/action_signInFragment_to_mainFragment"
                 app:destination="@id/mainFragment"
-                app:popUpTo="@+id/signInFragment"
+                app:popUpTo="@id/signInFragment"
                 app:popUpToInclusive="true"/>
 
     </fragment>

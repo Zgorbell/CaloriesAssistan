@@ -8,11 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.calorieassistant.R
-import com.example.calorieassistant.models.Ingredient
+import com.example.domain.model.Ingredient
 import kotlinx.android.synthetic.main.card_ingredient.view.*
 
 class IngredientsListAdapter(val context: Context) :
-    ListAdapter<Ingredient, IngredientsListAdapter.IngredientViewHolder>(DishesDiffUtilCallback()) {
+    ListAdapter<com.example.domain.model.Ingredient, IngredientsListAdapter.IngredientViewHolder>(DishesDiffUtilCallback()) {
 
     override fun onCreateViewHolder(container: ViewGroup, pos: Int): IngredientViewHolder {
         val view = LayoutInflater.from(container.context).inflate(R.layout.card_ingredient, container, false)
@@ -24,7 +24,7 @@ class IngredientsListAdapter(val context: Context) :
     }
 
     inner class IngredientViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(ingredient: Ingredient) {
+        fun bind(ingredient: com.example.domain.model.Ingredient) {
             itemView.card_ingredient_name.text = ingredient.name
             "Калорий: ${ingredient.calories.toInt()}".let{
                 itemView.card_ingredient_calories.text = it
@@ -36,13 +36,13 @@ class IngredientsListAdapter(val context: Context) :
         }
     }
 
-    class DishesDiffUtilCallback : DiffUtil.ItemCallback<Ingredient>() {
+    class DishesDiffUtilCallback : DiffUtil.ItemCallback<com.example.domain.model.Ingredient>() {
 
-        override fun areItemsTheSame(new: Ingredient, old: Ingredient): Boolean {
+        override fun areItemsTheSame(new: com.example.domain.model.Ingredient, old: com.example.domain.model.Ingredient): Boolean {
             return new.name == old.name
         }
 
-        override fun areContentsTheSame(new: Ingredient, old: Ingredient): Boolean {
+        override fun areContentsTheSame(new: com.example.domain.model.Ingredient, old: com.example.domain.model.Ingredient): Boolean {
             return new.calories == old.calories
         }
 

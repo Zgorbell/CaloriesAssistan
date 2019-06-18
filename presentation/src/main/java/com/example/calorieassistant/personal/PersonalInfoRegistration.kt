@@ -15,9 +15,9 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.calorieassistant.R
 import com.example.calorieassistant.databinding.FragmentPersonalInfoRegistrationBinding
-import com.example.calorieassistant.models.Sex
-import com.example.calorieassistant.models.UserActivityLevel
-import com.example.calorieassistant.models.UserPersonal
+import com.example.domain.model.Sex
+import com.example.domain.model.UserActivityLevel
+import com.example.domain.model.UserPersonal
 import kotlinx.android.synthetic.main.fragment_personal_info_registration.*
 
 class PersonalInfoRegistration : Fragment() {
@@ -74,7 +74,7 @@ class PersonalInfoRegistration : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewModel.onHeightChanged( s?.toString()?.toDoubleOrNull() ?: 0.0)
+                viewModel.onHeightChanged( s?.toString()?.toLongOrNull() ?: 0)
             }
         })
 
@@ -82,7 +82,7 @@ class PersonalInfoRegistration : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewModel.onWeightChanged( s?.toString()?.toDoubleOrNull() ?: 0.0)
+                viewModel.onWeightChanged( s?.toString()?.toLongOrNull() ?: 0)
             }
         })
 

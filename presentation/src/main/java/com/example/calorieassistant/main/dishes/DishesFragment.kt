@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.calorieassistant.R
-import com.example.calorieassistant.models.Dish
+import com.example.domain.model.Dish
 import kotlinx.android.synthetic.main.fragment_dishes_list.*
 
 class DishesFragment: Fragment(){
 
-    private lateinit var adapter: ListAdapter<Dish, DishesListAdapter.DishesViewHolder>
+    private lateinit var adapter: ListAdapter<com.example.domain.model.Dish, DishesListAdapter.DishesViewHolder>
     private lateinit var navController: NavController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,17 +40,17 @@ class DishesFragment: Fragment(){
         adapter.submitList(getDishes())
     }
 
-    private fun onDishClicked(dish: Dish){
+    private fun onDishClicked(dish: com.example.domain.model.Dish){
         navController.navigate(R.id.dishFragment)
     }
 
-    private fun getDishes(): MutableList<Dish>{
-        val dishes = ArrayList<Dish>()
-        dishes.add(Dish(0, "Курица запеченая в духовке ", 400.toDouble()))
-        dishes.add(Dish(1, "Стейк на гриле", 390.toDouble()))
-        dishes.add(Dish(2, "Свинная отбивная", 400.toDouble()))
-        dishes.add(Dish(3, "Гуляш из индейки", 400.toDouble()))
-        dishes.add(Dish(4, "Колбаса домашняя из свинины", 400.toDouble()))
+    private fun getDishes(): MutableList<com.example.domain.model.Dish>{
+        val dishes = ArrayList<com.example.domain.model.Dish>()
+        dishes.add(com.example.domain.model.Dish(0, "Курица запеченая в духовке ", 400.toDouble()))
+        dishes.add(com.example.domain.model.Dish(1, "Стейк на гриле", 390.toDouble()))
+        dishes.add(com.example.domain.model.Dish(2, "Свинная отбивная", 400.toDouble()))
+        dishes.add(com.example.domain.model.Dish(3, "Гуляш из индейки", 400.toDouble()))
+        dishes.add(com.example.domain.model.Dish(4, "Колбаса домашняя из свинины", 400.toDouble()))
         return dishes
     }
 }

@@ -1,4 +1,4 @@
-package com.example.calorieassistant.models
+package com.example.domain.model
 
 import com.example.remote.model.Dish
 

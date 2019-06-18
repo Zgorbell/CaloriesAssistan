@@ -1,7 +1,7 @@
 package com.example.calorieassistant.util
 
 import android.databinding.InverseMethod
-import com.example.calorieassistant.models.Sex
+import com.example.domain.model.Sex
 
 
 object Converter {

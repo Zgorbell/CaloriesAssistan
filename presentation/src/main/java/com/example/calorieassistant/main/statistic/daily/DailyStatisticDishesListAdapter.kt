@@ -8,14 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.calorieassistant.R
-import com.example.calorieassistant.models.Dish
-import com.example.calorieassistant.models.DishUsed
+import com.example.domain.model.Dish
+import com.example.domain.model.DishUsed
 import kotlinx.android.synthetic.main.card_dish.view.*
 
 
 class DailyStatisticDishesListAdapter(val context: Context,
-    val listener: (DishUsed) -> Unit)
-    : ListAdapter<DishUsed, DailyStatisticDishesListAdapter.DishesViewHolder>(DishesDiffUtilCallback()){
+    val listener: (com.example.domain.model.DishUsed) -> Unit)
+    : ListAdapter<com.example.domain.model.DishUsed, DailyStatisticDishesListAdapter.DishesViewHolder>(DishesDiffUtilCallback()){
 
 
     override fun onCreateViewHolder(container: ViewGroup, pos: Int): DishesViewHolder {
@@ -28,7 +28,7 @@ class DailyStatisticDishesListAdapter(val context: Context,
     }
 
     inner class DishesViewHolder(view: View): RecyclerView.ViewHolder(view){
-        fun bind(dish: DishUsed){
+        fun bind(dish: com.example.domain.model.DishUsed){
             itemView.card_dish_tv_name.text = dish.getName()
             "${context.getString(R.string.calories)}: ${dish.getCalories().toInt()}".let {
                 itemView.card_dish_tv_calories.text = it
@@ -41,13 +41,13 @@ class DailyStatisticDishesListAdapter(val context: Context,
         }
     }
 
-    class DishesDiffUtilCallback: DiffUtil.ItemCallback<DishUsed>(){
+    class DishesDiffUtilCallback: DiffUtil.ItemCallback<com.example.domain.model.DishUsed>(){
 
-        override fun areItemsTheSame(new: DishUsed, old: DishUsed): Boolean {
+        override fun areItemsTheSame(new: com.example.domain.model.DishUsed, old: com.example.domain.model.DishUsed): Boolean {
             return new.getName() == old.getName()
         }
 
-        override fun areContentsTheSame(new: DishUsed, old: DishUsed): Boolean {
+        override fun areContentsTheSame(new: com.example.domain.model.DishUsed, old: com.example.domain.model.DishUsed): Boolean {
             return new.getCalories() == old.getCalories()
         }
 

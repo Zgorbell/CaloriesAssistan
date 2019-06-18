@@ -15,8 +15,10 @@ import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.calorieassistant.databinding.FragmentSignInBinding
-import com.example.calorieassistant.models.User
 import kotlinx.android.synthetic.main.fragment_sign_in.*
+import androidx.navigation.NavOptions
+
+
 
 
 class SignInFragment : Fragment() {
@@ -25,6 +27,15 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private lateinit var navController: NavController
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setupViewModel()
+        subscribeAuthorizationResult()
+    }
+
+    private fun subscribeAuthorizationResult(){
+        viewModel.liveDataAuthorizationCompleted.observe(this, Observer{startMain()})
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
@@ -43,8 +54,8 @@ class SignInFragment : Fragment() {
     }
 
     private fun setupBindings() {
-        val user = User("", "")
-        binding.user = user
+        val user = com.example.domain.model.UserAuthorization("", "")
+        binding.userAuthorization = user
         viewModel.setUser(user)
     }
 
@@ -60,13 +71,17 @@ class SignInFragment : Fragment() {
     private fun subscribeSignInResult(liveData: LiveData<Boolean>) {
         liveData.observe(this, Observer {
             it?.let {
-                if (it) {
-                    fragmentManager?.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    navController.navigate(R.id.mainFragment)
-                }
+                if (it) { startMain() }
                 else Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun startMain(){
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.signInFragment, true)
+            .build()
+        navController.navigate(R.id.mainFragment, null, navOptions)
     }
 
 }

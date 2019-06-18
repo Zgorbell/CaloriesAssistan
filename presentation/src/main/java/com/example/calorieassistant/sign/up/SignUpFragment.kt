@@ -14,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.calorieassistant.R
 import com.example.calorieassistant.databinding.FragmentSignUpBinding
-import com.example.calorieassistant.models.User
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 class SignUpFragment: Fragment(){
@@ -36,8 +35,8 @@ class SignUpFragment: Fragment(){
     }
 
     private fun setupBindings() {
-        val user = User("", "")
-        binding.user = user
+        val user = com.example.domain.model.UserAuthorization("", "")
+        binding.userAuthorization = user
         viewModel.setUser(user)
     }
 

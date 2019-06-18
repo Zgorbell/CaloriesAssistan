@@ -6,8 +6,8 @@
     <data>
 
         <variable
-                name="user"
-                type="com.example.calorieassistant.models.User"/>
+                name="userAuthorization"
+                type="com.example.domain.model.UserAuthorization"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -52,7 +52,7 @@
                             android:lines="1"
                             android:ems="10"
                             android:hint="@string/login"
-                            android:text="@={user.name}"
+                            android:text="@={userAuthorization.name}"
                             android:id="@+id/fragment_sign_up_et_login"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -85,7 +85,7 @@
                             android:inputType="textPassword"
                             android:lines="1"
                             android:ems="10"
-                            android:text="@={user.password}"
+                            android:text="@={userAuthorization.password}"
                             android:hint="@string/password"
                             android:id="@+id/fragment_sign_up_password"/>
                 </android.support.design.widget.TextInputLayout>

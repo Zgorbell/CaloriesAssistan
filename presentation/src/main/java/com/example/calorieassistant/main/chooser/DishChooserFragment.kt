@@ -8,8 +8,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import androidx.navigation.Navigation
+import com.example.calorieassistant.MainActivity
 import com.example.calorieassistant.R
-import com.example.calorieassistant.models.DishUsed
+import com.example.domain.model.DishUsed
 import com.example.remote.model.Dish
 import kotlinx.android.synthetic.main.fragment_dish_chooser.*
 
@@ -39,7 +41,7 @@ class DishChooserFragment : Fragment() {
     }
 
     private fun subscribeDishesSelectedChanges() {
-        viewModel.dishesSelected.observe(this, Observer { list: List<DishUsed>? ->
+        viewModel.dishesSelected.observe(this, Observer { list: List<com.example.domain.model.DishUsed>? ->
             list?.let { listAdapter.submitList(it) }
         })
     }
@@ -58,8 +60,14 @@ class DishChooserFragment : Fragment() {
         menuItemSubmit = menu?.add("Submit")
         menuItemSubmit?.setIcon(R.drawable.ic_check_24dp)
         menuItemSubmit?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-        menuItemSubmit?.setOnMenuItemClickListener { viewModel.onButtonSubmitClicked(); true }
+        menuItemSubmit?.setOnMenuItemClickListener { viewModel.onButtonSubmitClicked();
+            navigateToBack()
+            true }
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun navigateToBack(){
+        requireActivity().onBackPressed()
     }
 
     private fun setupDishChooserAutoComplete() {
